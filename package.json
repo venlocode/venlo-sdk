@@ -1,0 +1,18 @@
+{
+  "name": "venlo-sdk",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@octokit/types": "^6.34.0",
+    "ethers": "^5.5.2",
+    "isomorphic-unfetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
