@@ -39,4 +39,7 @@ export default class HttpClient {
     }
     return res.json();
   }
+  setAuth(auth: AuthConfig){
+    this.auth = auth;
+  }
 }
