@@ -4,6 +4,12 @@ import BackendClient from "./lib/BackendClient";
 import MessageClient from "./lib/MessageClient";
 import WebhookClient from "./lib/WebhookClient";
 
+export * from "./lib/MessageClient";
+export * from "./lib/HttpClient";
+export * from "./lib/BackendClient";
+export * from "./lib/GithubClient";
+export * from "./lib/WebhookClient";
+
 export {
   HttpClient,
   GithubClient,

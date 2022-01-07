@@ -1,12 +1,12 @@
 import { Endpoints } from "@octokit/types";
-import HttpClient from "./HttpClient";
+import HttpClient, { AuthConfig } from "./HttpClient";
 
 export default class GithubClient extends HttpClient {
-  constructor(accessToken?: string){
-    super("https://api.github.com/", accessToken);
+  constructor(auth?: AuthConfig){
+    super("https://api.github.com/", auth);
   }
 
-  getUserFromAccessToken(): Promise<Endpoints["GET /user"]["response"]["data"]>{
+  getUser(): Promise<Endpoints["GET /user"]["response"]["data"]>{
     return this._getReq(`user`);
   }
   getUserFromId(id: string): Promise<Endpoints["GET /user"]["response"]["data"]>{
