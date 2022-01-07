@@ -64,11 +64,13 @@ export default class MessageClient {
   constructor(signer: Signer){
     this.signer = signer;
   }
+  setSigner(signer: Signer){
+    this.signer = signer;
+  }
   async signMessage(message: RawMessage): Promise<SignedMessage> {
     const raw = JSON.stringify(message);
     return { signature: await this.signer.signMessage(raw), raw };
   }
-
   repoCreateMessage(data: RepoCreateMessageData){
     return this.signMessage({
       type: "RepoCreate",
