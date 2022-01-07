@@ -1,7 +1,7 @@
 {
   "name": "venlo-sdk",
   "version": "1.0.0",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "files": ["dist/**/*"],
   "scripts": {
