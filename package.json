@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "main": "dist/src/index.js",
   "license": "MIT",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist/**/*"],
   "scripts": {
     "prepare": "tsc",
     "watch": "tsc --watch"
