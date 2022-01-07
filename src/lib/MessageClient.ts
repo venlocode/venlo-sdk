@@ -59,9 +59,9 @@ export interface RawMessage {
 };
 
 export default class MessageClient {
-  signer: Signer;
+  signer?: Signer;
 
-  constructor(signer: Signer){
+  constructor(signer?: Signer){
     this.signer = signer;
   }
   setSigner(signer: Signer){
@@ -69,7 +69,7 @@ export default class MessageClient {
   }
   async signMessage(message: RawMessage): Promise<SignedMessage> {
     const raw = JSON.stringify(message);
-    return { signature: await this.signer.signMessage(raw), raw };
+    return { signature: await this.signer!.signMessage(raw), raw };
   }
   repoCreateMessage(data: RepoCreateMessageData){
     return this.signMessage({
