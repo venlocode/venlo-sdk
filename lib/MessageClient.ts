@@ -48,11 +48,11 @@ export interface TipMessageData {
   transactionHash: string;
 };
 
-type MessageType = "RepoCreate" | "UserCreate" | "IssueCreate" | "RequestReview" | "IssueReject" | "IssueResolve" | "ClaimExpiredTokens" | "Tip";
+export type MessageType = "RepoCreate" | "UserCreate" | "IssueCreate" | "RequestReview" | "IssueReject" | "IssueResolve" | "ClaimExpiredTokens" | "Tip";
 
-type MessageData = RepoCreateMessageData | UserCreateMessageData | IssueCreateMessageData | RequestReviewMessageData | IssueRejectMessageData | IssueResolveMessageData | ClaimExpiredTokensMessageData | TipMessageData;
+export type MessageData = RepoCreateMessageData | UserCreateMessageData | IssueCreateMessageData | RequestReviewMessageData | IssueRejectMessageData | IssueResolveMessageData | ClaimExpiredTokensMessageData | TipMessageData;
 
-interface RawMessage {
+export interface RawMessage {
   type: MessageType;
   data: MessageData;
   validUntil: Number;
