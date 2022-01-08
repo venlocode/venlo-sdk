@@ -26,7 +26,7 @@ export default class BackendClient extends HttpClient {
     return this._getReq(`users/${id}`);
   }
   getUserFromAddress(address: string): Promise<User> {
-    return this._getReq(`users?walletAddress=${address}`);
+    return this._getReq(`users?address=${address}`);
   }
 
   createRepo(message: SignedMessage) {

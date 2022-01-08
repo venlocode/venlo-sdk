@@ -17,7 +17,7 @@ export default class HttpClient {
   async _getReq(endpoint: string){
     const uri = `${this.url}/${endpoint}`;;
     const res = await fetch(uri, this.auth ? { headers: { Authorization: `${this.auth.type} ${this.auth.accessToken}` } } : undefined);
-    
+
     if(res.status != 200) {
       const err = await res.text();
       throw new Error(`Failed to fetch ${uri}: ${res.status} ${err}`);
@@ -32,7 +32,7 @@ export default class HttpClient {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    
+
     if(res.status != 200) {
       const err = await res.text();
       throw new Error(`Failed to fetch ${uri}: ${res.status} ${err}`);
