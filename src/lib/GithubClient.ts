@@ -3,7 +3,7 @@ import HttpClient, { AuthConfig } from "./HttpClient";
 
 export default class GithubClient extends HttpClient {
   constructor(auth?: AuthConfig){
-    super("https://api.github.com/", auth);
+    super("https://api.github.com", auth);
   }
 
   getUser(): Promise<Endpoints["GET /user"]["response"]["data"]>{
