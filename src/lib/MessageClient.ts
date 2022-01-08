@@ -52,9 +52,9 @@ export type MessageType = "RepoCreate" | "UserCreate" | "IssueCreate" | "Request
 
 export type MessageData = RepoCreateMessageData | UserCreateMessageData | IssueCreateMessageData | RequestReviewMessageData | IssueRejectMessageData | IssueResolveMessageData | ClaimExpiredTokensMessageData | TipMessageData;
 
-export interface RawMessage {
+export interface Message<T extends MessageData> {
   type: MessageType;
-  data: MessageData;
+  data: T;
   validUntil: Number;
 };
 
@@ -67,7 +67,7 @@ export default class MessageClient {
   setSigner(signer: Signer){
     this.signer = signer;
   }
-  async signMessage(message: RawMessage): Promise<SignedMessage> {
+  async signMessage<T extends MessageData>(message: Message<T>): Promise<SignedMessage> {
     const raw = JSON.stringify(message);
     return { signature: await this.signer!.signMessage(raw), raw };
   }
