@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "ethers": "^5.5.2",
+    "ipfs-unixfs-importer": "^9.0.6",
     "isomorphic-unfetch": "^3.1.0",
     "multiformats": "^9.5.8"
   },
