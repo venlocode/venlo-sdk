@@ -4,7 +4,7 @@ import { CID, IPFSHTTPClient } from "ipfs-http-client";
 export interface IssueData {
   id: string;
   creator: string;
-  expiresOn: number;
+  expiresOn: BigNumber;
   tokens: BigNumber;
   context: Uint8Array;
 };
@@ -25,7 +25,7 @@ export default class Issue {
   id: string;
   creator: string;
   tokens: BigNumber;
-  expiresOn: number;
+  expiresOn: BigNumber;
   context?: IssueContext;
   contextCID?: CID;
 
