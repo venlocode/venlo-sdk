@@ -14,6 +14,13 @@ export interface IssueContext {
   description: string;
 };
 
+export enum EventTopics {
+  ISSUE_CREATE = "0xcef462308b17e05167520aa634b204f93801babe44e50cbc093715311c26f301",
+  ISSUE_RESOLVE = "0x008e69eb2bd87be102869487aea6ba9b448bea880cbef7f9918b8e910f908d63",
+  ISSUE_REJECT = "0x37f0ffea363f56b8909317ad9575fe4af24f80a8ade7a4ea494865765323498c",
+  ISSUE_EXPIRE = "0xf951cddb2c86902cc5a4fe6a0ce832ff6e93e430e055973aefb5354c01784d27"
+};
+
 export default class Issue {
   id: string;
   creator: string;
