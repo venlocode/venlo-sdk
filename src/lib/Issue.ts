@@ -2,11 +2,11 @@ import { BigNumber } from "ethers";
 import { CID, IPFSHTTPClient } from "ipfs-http-client";
 
 export interface IssueData {
-  id: string;
+  id: BigNumber;
   creator: string;
-  expiresOn: BigNumber;
-  tokens: BigNumber;
   context: Uint8Array;
+  tokens: BigNumber;
+  expiresOn: BigNumber;
 };
 
 export interface IssueContext {
@@ -22,10 +22,11 @@ export enum EventTopics {
 };
 
 export default class Issue {
-  id: string;
+  id: BigNumber;
   creator: string;
   tokens: BigNumber;
   expiresOn: BigNumber;
+
   context?: IssueContext;
   contextCID?: CID;
 
