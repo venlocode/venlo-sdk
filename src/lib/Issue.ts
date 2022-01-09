@@ -56,7 +56,7 @@ export default class Issue {
     return context;
   }
 
-  static async genCID(context: IssueContext, options: any): Promise<CID> {
+  static async genCID(context: IssueContext, options?: any): Promise<CID> {
     // @ts-ignore
     const block: Blockstore = {
       get: async (cid: CID) => { throw new Error(`unexpected block API get for ${cid}`) },
