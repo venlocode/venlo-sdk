@@ -1,5 +1,8 @@
 import { BigNumber } from "ethers";
-import { CID, IPFSHTTPClient } from "ipfs-http-client";
+import { CID } from "multiformats/cid";
+import fetch from "isomorphic-unfetch";
+
+const defaultIPFSGateway = "http://localhost:8000";
 
 export interface IssueData {
   id: BigNumber;
@@ -40,16 +43,11 @@ export default class Issue {
     this._contextRaw = data.context;
   }
 
-  async fetchContext(ipfsClient: IPFSHTTPClient): Promise<IssueContext> {
+  async fetchContext(ipfsGateway?: string): Promise<IssueContext> {
     const cid = CID.parse(this._contextRaw.toString());
-    const iter = await ipfsClient.get(cid);
+    const res = await fetch(`${ipfsGateway || defaultIPFSGateway}/ipfs/${cid.toString()}`);
 
-    let data: string = "";
-
-    for await(const chunk of iter){
-      data += chunk.toString();
-    }
-    const context = <IssueContext>JSON.parse(data!.toString());
+    const context = <IssueContext>await res.json();
 
     this.context = context;
     this.contextCID = cid;

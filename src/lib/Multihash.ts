@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { CID } from "ipfs-http-client";
+import { CID } from "multiformats/cid";
 
 export interface Multihash {
   digest: Uint8Array;

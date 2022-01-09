@@ -11,12 +11,12 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "@octokit/types": "^6.34.0",
     "ethers": "^5.5.2",
-    "ipfs-http-client": "^55.0.0",
-    "isomorphic-unfetch": "^3.1.0"
+    "isomorphic-unfetch": "^3.1.0",
+    "multiformats": "^9.5.8"
   },
   "devDependencies": {
+    "@octokit/types": "^6.34.0",
     "typescript": "^4.5.4"
   }
 }
