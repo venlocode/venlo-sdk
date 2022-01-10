@@ -14,11 +14,11 @@ export default class WebhookClient extends HttpClient {
   resolveIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve/${transactionHash}`);
   }
-  rejectIssue(repoAddress: string, issueId: BigNumber){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject`);
+  rejectIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject/${transactionHash}`);
   }
-  claimExpired(repoAddress: string, issueId: BigNumber){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire`);
+  claimExpired(repoAddress: string, issueId: BigNumber, transactionHash: string){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire/${transactionHash}`);
   }
   refreshIssue(repoAddress: string, issueId: string){
     return this._getReq(`api/${repoAddress}/${issueId}/refresh`);
