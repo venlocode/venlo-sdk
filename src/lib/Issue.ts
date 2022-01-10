@@ -8,7 +8,7 @@ const defaultIPFSGateway = "http://localhost:8000";
 export interface IssueData {
   id: BigNumber;
   creator: string;
-  context: BigNumber[];
+  context: number[];
   tokens: BigNumber;
   expiresOn: BigNumber;
 };
@@ -34,7 +34,7 @@ export default class Issue {
   context?: IssueContext;
   contextCID?: CID;
 
-  private _contextRaw: BigNumber[];
+  private _contextRaw: number[];
 
   constructor(data: IssueData){
     this.id = data.id;
