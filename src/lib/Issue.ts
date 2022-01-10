@@ -3,7 +3,7 @@ import { CID } from "multiformats/cid";
 import { Blockstore, importer, UserImporterOptions } from "ipfs-unixfs-importer";
 import { getReq } from "./fetch";
 
-const defaultIPFSGateway = "http://localhost:8000";
+const defaultIPFSGateway = "http://localhost:8080";
 
 export interface IssueData {
   id: BigNumber;
