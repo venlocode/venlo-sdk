@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
 import { CID } from "multiformats/cid";
-import fetch from "isomorphic-unfetch";
 import { Blockstore, importer, UserImporterOptions } from "ipfs-unixfs-importer";
+import { getReq } from "./fetch";
 
 const defaultIPFSGateway = "http://localhost:8000";
 
@@ -46,9 +46,8 @@ export default class Issue {
 
   async fetchContext(ipfsGateway?: string): Promise<IssueContext> {
     const cid = CID.parse(this._contextRaw.toString());
-    const res = await fetch(`${ipfsGateway || defaultIPFSGateway}/ipfs/${cid.toString()}`);
 
-    const context = <IssueContext>await res.json();
+    let context = <IssueContext>await getReq(`${ipfsGateway || defaultIPFSGateway}/ipfs/${cid}`);
 
     this.context = context;
     this.contextCID = cid;

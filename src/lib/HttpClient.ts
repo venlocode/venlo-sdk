@@ -1,4 +1,5 @@
 import fetch from "isomorphic-unfetch";
+import { getReq, postReq } from "./fetch";
 
 export interface AuthConfig {
   accessToken: string;
@@ -13,33 +14,14 @@ export default class HttpClient {
     this.url = url;
     this.auth = auth;
   }
-
-  async _getReq(endpoint: string){
-    const uri = `${this.url}/${endpoint}`;;
-    const res = await fetch(uri, this.auth ? { headers: { Authorization: `${this.auth.type} ${this.auth.accessToken}` } } : undefined);
-
-    if(res.status != 200) {
-      const err = await res.text();
-      throw new Error(`Failed to fetch ${uri}: ${res.status} ${err}`);
-    }
-    return res.json();
-  }
-  async _postReq(endpoint: string, data: Object = {}){
-    const uri = `${this.url}/${endpoint}`;
-
-    const res = await fetch(uri, { 
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    if(res.status != 200) {
-      const err = await res.text();
-      throw new Error(`Failed to fetch ${uri}: ${res.status} ${err}`);
-    }
-    return res.json();
-  }
   setAuth(auth: AuthConfig){
     this.auth = auth;
+  }
+
+  _getReq(endpoint: string){
+    return getReq(`${this.url}/${endpoint}`, this.auth && { Authorization: `${this.auth.type} ${this.auth.accessToken}` });
+  }
+  async _postReq(endpoint: string, data: Object = {}){
+    return postReq(`${this.url}/${endpoint}`, data);
   }
 }
