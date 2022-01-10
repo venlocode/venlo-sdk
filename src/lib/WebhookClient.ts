@@ -8,8 +8,8 @@ export default class WebhookClient extends HttpClient {
   constructor(url: string){
     super(url);
   }
-  createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext){
-    return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create`, { context });
+  createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext, transactionHash: string){
+    return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create/${transactionHash}`, { context });
   }
   resolveIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve/${transactionHash}`);
