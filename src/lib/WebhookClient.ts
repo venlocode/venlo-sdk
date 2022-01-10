@@ -11,8 +11,8 @@ export default class WebhookClient extends HttpClient {
   createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext){
     return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create`, { context });
   }
-  resolveIssue(repoAddress: string, issueId: BigNumber){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve`);
+  resolveIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve/${transactionHash}`);
   }
   rejectIssue(repoAddress: string, issueId: BigNumber){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject`);
