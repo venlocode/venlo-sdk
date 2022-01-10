@@ -128,12 +128,15 @@ export default class MessageClient {
     });
   }
 
-  static verifyMessage<T extends MessageData>({ raw, signature }: SignedMessage){
+  static verifyMessage<T extends MessageData>({ raw, signature }: SignedMessage, type?: MessageType): { address: string, message: Message<T> } {
     const address = utils.verifyMessage(Buffer.from(raw), signature);
     const message = <Message<T>>JSON.parse(raw);
 
     if(message.validUntil < Date.now()){
       throw new Error("Message expired");
+    }
+    if(type && type != message.type){
+      throw new Error("Message type mismatch");
     }
     return { address, message };
   }
