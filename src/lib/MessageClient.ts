@@ -1,4 +1,4 @@
-import { Signer } from "ethers";
+import { Signer, utils } from "ethers";
 
 export interface SignedMessage {
   signature: string;
@@ -126,5 +126,15 @@ export default class MessageClient {
       data: data,
       validUntil: Date.now() + 60*1000
     });
+  }
+
+  static verifyMessage<T extends MessageData>({ raw, signature }: SignedMessage){
+    const address = utils.verifyMessage(Buffer.from(raw), signature);
+    const message = <Message<T>>JSON.parse(raw);
+
+    if(message.validUntil < Date.now()){
+      throw new Error("Message expired");
+    }
+    return { address, message };
   }
 }
