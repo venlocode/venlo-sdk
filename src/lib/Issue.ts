@@ -83,7 +83,7 @@ export default class Issue {
     array.fill(0);
 
     for(let i = bytes.byteLength - 1; i >= 0; i--){
-      array[i] = bytes[i];
+      array[array.length - bytes.length + i] = bytes[i];
     }
     return array;
   }
