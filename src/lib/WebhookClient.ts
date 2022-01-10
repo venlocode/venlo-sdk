@@ -8,28 +8,27 @@ export default class WebhookClient extends HttpClient {
   constructor(url: string){
     super(url);
   }
-  // createIssue(message: SignedMessage){
-  //   return this._postReq("api/issues/new", message);
-  // }
   createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext){
     return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create`, { context });
   }
-  requestReview(message: SignedMessage){
-    return this._postReq("api/issues/requestReview", message);
+  resolveIssue(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve`);
   }
-  rejectIssue(message: SignedMessage){
-    return this._postReq("api/issues/reject", message);
+  rejectIssue(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject`);
   }
-  resolveIssue(message: SignedMessage){
-    return this._postReq("api/issues/resolve", message);
-  }
-  claimExpiredTokens(message: SignedMessage){
-    return this._postReq("api/issues/claimExpired", message);
-  }
-  tip(message: SignedMessage){
-    return this._postReq("api/issues/tip", message);
+  claimExpired(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire`);
   }
   refreshIssue(repoAddress: string, issueId: string){
     return this._getReq(`api/${repoAddress}/${issueId}/refresh`);
+  }
+
+  // need to update these two
+  requestReview(message: SignedMessage){
+    return this._postReq("api/issues/requestReview", message);
+  }
+  tip(message: SignedMessage){
+    return this._postReq("api/issues/tip", message);
   }
 }
