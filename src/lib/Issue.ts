@@ -76,7 +76,7 @@ export default class Issue {
     }
     return lastCid!;
   }
-  static fixLength(cid: CID): number[] {
+  static encodeCID(cid: CID): number[] {
     const bytes = cid.bytes;
     const array: number[] = new Array(64);
 
