@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
 import { CID } from "multiformats/cid";
 import fetch from "isomorphic-unfetch";
-import { Blockstore, importer } from "ipfs-unixfs-importer";
+import { Blockstore, importer, UserImporterOptions } from "ipfs-unixfs-importer";
 
 const defaultIPFSGateway = "http://localhost:8000";
 
@@ -56,7 +56,7 @@ export default class Issue {
     return context;
   }
 
-  static async genCID(context: IssueContext, options?: any): Promise<CID> {
+  static async genCID(context: IssueContext, options?: UserImporterOptions): Promise<CID> {
     // @ts-ignore
     const block: Blockstore = {
       get: async (cid: CID) => { throw new Error(`unexpected block API get for ${cid}`) },
@@ -65,6 +65,7 @@ export default class Issue {
 
     options = options || {};
     options.onlyHash = true;
+    options.cidVersion = 1;
   
     const content = new TextEncoder().encode(JSON.stringify(context));
     
