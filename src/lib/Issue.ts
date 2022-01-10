@@ -8,7 +8,7 @@ const defaultIPFSGateway = "http://localhost:8000";
 export interface IssueData {
   id: BigNumber;
   creator: string;
-  context: Uint8Array;
+  context: BigNumber[];
   tokens: BigNumber;
   expiresOn: BigNumber;
 };
@@ -34,7 +34,7 @@ export default class Issue {
   context?: IssueContext;
   contextCID?: CID;
 
-  private _contextRaw: Uint8Array;
+  private _contextRaw: BigNumber[];
 
   constructor(data: IssueData){
     this.id = data.id;
@@ -75,5 +75,16 @@ export default class Issue {
       lastCid = cid;
     }
     return lastCid!;
+  }
+  static fixLength(cid: CID): number[] {
+    const bytes = cid.bytes;
+    const array: number[] = new Array(64);
+
+    array.fill(0);
+
+    for(let i = bytes.byteLength - 1; i >= 0; i--){
+      array[i] = bytes[i];
+    }
+    return array;
   }
 };
