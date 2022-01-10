@@ -45,9 +45,8 @@ export default class Issue {
   }
 
   async fetchContext(ipfsGateway?: string): Promise<IssueContext> {
-    const cid = CID.parse(this._contextRaw.toString());
-
-    let context = <IssueContext>await getReq(`${ipfsGateway || defaultIPFSGateway}/ipfs/${cid}`);
+    const cid = Issue.decodeCID(this._contextRaw);
+    const context = <IssueContext>await getReq(`${ipfsGateway || defaultIPFSGateway}/ipfs/${cid}`);
 
     this.context = context;
     this.contextCID = cid;
@@ -85,5 +84,17 @@ export default class Issue {
       array[array.length - bytes.length + i] = bytes[i];
     }
     return array;
+  }
+  static decodeCID(encoded: BigNumber[]): CID {
+    const bytes = new Uint8Array(64);
+    let l = 0;
+
+    for(let i = 0; i < encoded.length; ++i){
+      if(encoded[i].isZero()){
+        continue;
+      }
+      bytes[l++] = encoded[i].toNumber();
+    }
+    return CID.decode(bytes.slice(0, l));
   }
 };
