@@ -85,15 +85,15 @@ export default class Issue {
     }
     return array;
   }
-  static decodeCID(encoded: BigNumber[]): CID {
+  static decodeCID(encoded: number[]): CID {
     const bytes = new Uint8Array(64);
     let l = 0;
 
     for(let i = 0; i < encoded.length; ++i){
-      if(encoded[i].isZero()){
+      if(encoded[i] == 0){
         continue;
       }
-      bytes[l++] = encoded[i].toNumber();
+      bytes[l++] = encoded[i];
     }
     return CID.decode(bytes.slice(0, l));
   }
