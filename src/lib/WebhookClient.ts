@@ -1,9 +1,14 @@
+import { BigNumber } from "ethers";
+import { CID } from "multiformats";
 import HttpClient from "./HttpClient";
 import { SignedMessage } from "./MessageClient";
 
 export default class WebhookClient extends HttpClient {
   constructor(url: string){
     super(url);
+  }
+  pinContext(repoAddress: string, issueId: BigNumber, cid: CID){
+    return this._getReq(`api/repos/${repoAddress}/issues/${issueId.toString()}/pin/${cid.toString()}`);
   }
   createIssue(message: SignedMessage){
     return this._postReq("api/issues/new", message);

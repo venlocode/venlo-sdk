@@ -32,7 +32,7 @@ export default class Issue {
   expiresOn: BigNumber;
 
   context?: IssueContext;
-  contextCID?: CID;
+  contextCID: CID;
 
   private _contextRaw: number[];
 
@@ -41,7 +41,9 @@ export default class Issue {
     this.creator = data.creator;
     this.tokens = data.tokens;
     this.expiresOn = data.expiresOn;
+
     this._contextRaw = data.context;
+    this.contextCID = Issue.decodeCID(this._contextRaw);
   }
 
   async fetchContext(ipfsGateway?: string): Promise<IssueContext> {
