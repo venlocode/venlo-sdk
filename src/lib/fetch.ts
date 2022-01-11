@@ -1,7 +1,7 @@
 import fetch from "isomorphic-unfetch";
 
 const _getReq = async (url: string, headers?: HeadersInit) => {
-  const res = await fetch(url, { headers });
+  const res = await fetch(url, { headers, redirect: "manual" });
 
   if(res.status != 200) {
     const err = await res.text();
