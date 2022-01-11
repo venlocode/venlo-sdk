@@ -2,7 +2,7 @@
   "name": "venlo-sdk",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "license": "MIT",
+  "license": "ISC",
   "files": [
     "dist/**/*"
   ],

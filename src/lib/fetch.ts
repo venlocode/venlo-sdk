@@ -3,7 +3,7 @@ import fetch from "isomorphic-unfetch";
 const _getReq = async (url: string, headers?: HeadersInit) => {
   const res = await fetch(url, { headers, redirect: "manual" });
 
-  if(res.status != 200) {
+  if(res.status != 200 && res.status != 301) {
     const err = await res.text();
     throw new Error(`Failed to fetch ${url}: ${res.status} ${err}`);
   }
