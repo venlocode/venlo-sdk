@@ -21,7 +21,7 @@ export default class WebhookClient extends HttpClient {
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire/${transactionHash}`);
   }
   tip(repoAddress: string, transactionHash: string, issueNumber: number | string){
-    return this._getReq(`repos/${repoAddress}/tip/${transactionHash}?issueNumber=${issueNumber}}`);
+    return this._getReq(`repos/${repoAddress}/tip/${transactionHash}?issueNumber=${issueNumber}`);
   }
   refreshIssue(repoAddress: string, issueId: string){
     return this._getReq(`api/${repoAddress}/${issueId}/refresh`);
