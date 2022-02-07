@@ -20,8 +20,8 @@ export default class WebhookClient extends HttpClient {
   claimExpired(repoAddress: string, issueId: BigNumber, transactionHash: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire/${transactionHash}`);
   }
-  tip(repoAddress: string, transactionHash: string){
-    return this._getReq(`repos/${repoAddress}/tip/${transactionHash}`);
+  tip(repoAddress: string, transactionHash: string, issueNumber: number | string){
+    return this._getReq(`repos/${repoAddress}/tip/${transactionHash}?issueNumber=${issueNumber}}`);
   }
   refreshIssue(repoAddress: string, issueId: string){
     return this._getReq(`api/${repoAddress}/${issueId}/refresh`);
