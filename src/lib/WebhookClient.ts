@@ -28,6 +28,6 @@ export default class WebhookClient extends HttpClient {
   }
   // need to update this
   requestReview(message: SignedMessage){
-    return this._postReq("api/issues/requestReview", message);
+    return this._postReq("issues/requestReview", message);
   }
 }
