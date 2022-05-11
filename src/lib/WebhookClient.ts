@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { CID } from "multiformats";
 import { IssueContext } from "..";
 import HttpClient from "./HttpClient";
 import { SignedMessage } from "./MessageClient";
