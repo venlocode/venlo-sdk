@@ -38,31 +38,6 @@ const contracts = {
       abi: RepoTable.abi,
       address: RepoTable.networks[ChainId.Mumbai].address
     },
-  },
-  [ChainId.Localhost]: {
-    CreatorToken: { abi: CreatorToken.abi },
-    Repository: { abi: Repository.abi },
-
-    CreatorTokenFactory: CreatorTokenFactory.networks[ChainId.Localhost] && {
-      abi: CreatorTokenFactory.abi,
-      address: CreatorTokenFactory.networks[ChainId.Localhost].address
-    },
-    RepoFactory: RepoFactory.networks[ChainId.Localhost] && {
-      abi: RepoFactory.abi,
-      address: RepoFactory.networks[ChainId.Localhost].address
-    },
-    Ven: Ven.networks[ChainId.Localhost] && {
-      abi: Ven.abi,
-      address: Ven.networks[ChainId.Localhost].address
-    },
-    UserTable: UserTable.networks[ChainId.Localhost] && {
-      abi: UserTable.abi,
-      address: UserTable.networks[ChainId.Localhost].address
-    },
-    RepoTable: RepoTable.networks[ChainId.Localhost] && {
-      abi: RepoTable.abi,
-      address: RepoTable.networks[ChainId.Localhost].address
-    },
   }
 };
 
