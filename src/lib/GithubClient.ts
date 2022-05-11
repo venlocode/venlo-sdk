@@ -45,4 +45,12 @@ export default class GithubClient extends HttpClient {
     }
     return await this.getOrgOwners(repo.owner.login);
   }
+  async getRepoOwnersFromId(repoId: string): Promise<Array<Endpoints["GET /users/{username}"]["response"]["data"]>>{
+    const repo = await this.getRepoFromId(repoId);
+  
+    if(repo.owner.type == "User") {
+      return [repo.owner];
+    }
+    return await this.getOrgOwners(repo.owner.login);
+  }
 }
