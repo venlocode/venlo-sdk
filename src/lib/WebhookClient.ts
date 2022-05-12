@@ -7,17 +7,17 @@ export default class WebhookClient extends HttpClient {
   constructor(url: string){
     super(url);
   }
-  createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext, transactionHash: string){
-    return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create/${transactionHash}`, { context });
+  createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext){
+    return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create`, { context });
   }
-  resolveIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve/${transactionHash}`);
+  resolveIssue(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve`);
   }
-  rejectIssue(repoAddress: string, issueId: BigNumber, transactionHash: string){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject/${transactionHash}`);
+  rejectIssue(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject`);
   }
-  claimExpired(repoAddress: string, issueId: BigNumber, transactionHash: string){
-    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire/${transactionHash}`);
+  claimExpired(repoAddress: string, issueId: BigNumber){
+    return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire`);
   }
   tip(repoAddress: string, transactionHash: string, issueNumber: number | string){
     return this._getReq(`repos/${repoAddress}/tip/${transactionHash}?issueNumber=${issueNumber}`);
