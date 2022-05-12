@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "prepare": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "push": "git add . && git commit -m \"ow\" && git push"
   },
   "dependencies": {
     "ethers": "^5.5.2",
