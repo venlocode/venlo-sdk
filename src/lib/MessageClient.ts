@@ -5,52 +5,14 @@ export interface SignedMessage {
   raw: string;
 };
 
-export interface RepoCreateMessageData {
-  address: string;
-  repoName: string;
-  accessToken: string;
-};
-
-export interface UserCreateMessageData {
-  accessToken: string;
-};
-
-export interface IssueCreateMessageData {
-  transactionHash: string;
-  issueId: string;
-  repoAddress: string;
-  description?: string;
-};
-
 export interface RequestReviewMessageData {
   repoAddress: string;
   issueId: string;
 };
 
-export interface IssueRejectMessageData {
-  repoAddress: string;
-  issueId: string;
-};
+export type MessageType = "RequestReview";
 
-export interface IssueResolveMessageData {
-  repoAddress: string;
-  issueId: string;
-};
-
-export interface ClaimExpiredTokensMessageData {
-  repoAddress: string;
-  issueId: string;
-};
-
-export interface TipMessageData {
-  repoAddress: string;
-  issueNumber: number;
-  transactionHash: string;
-};
-
-export type MessageType = "RepoCreate" | "UserCreate" | "IssueCreate" | "RequestReview" | "IssueReject" | "IssueResolve" | "ClaimExpiredTokens" | "Tip";
-
-export type MessageData = RepoCreateMessageData | UserCreateMessageData | IssueCreateMessageData | RequestReviewMessageData | IssueRejectMessageData | IssueResolveMessageData | ClaimExpiredTokensMessageData | TipMessageData;
+export type MessageData = RequestReviewMessageData
 
 export interface Message<T extends MessageData> {
   type: MessageType;
@@ -71,58 +33,9 @@ export default class MessageClient {
     const raw = JSON.stringify(message);
     return { signature: await this.signer!.signMessage(raw), raw };
   }
-  repoCreateMessage(data: RepoCreateMessageData){
-    return this.signMessage({
-      type: "RepoCreate",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }  
-  userCreateMessage(data: UserCreateMessageData){
-    return this.signMessage({
-      type: "UserCreate",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
-  issueCreateMessage(data: IssueCreateMessageData){
-    return this.signMessage({
-      type: "IssueCreate",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
   requestReviewMessage(data: RequestReviewMessageData){
     return this.signMessage({
       type: "RequestReview",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
-  issueRejectMessage(data: IssueRejectMessageData){
-    return this.signMessage({
-      type: "IssueReject",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
-  issueResolveMessage(data: IssueResolveMessageData){
-    return this.signMessage({
-      type: "IssueResolve",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
-  claimExpiredTokensMessage(data: ClaimExpiredTokensMessageData){
-    return this.signMessage({
-      type: "ClaimExpiredTokens",
-      data: data,
-      validUntil: Date.now() + 60*1000
-    });
-  }
-  tipMessage(data: TipMessageData){
-    return this.signMessage({
-      type: "Tip",
       data: data,
       validUntil: Date.now() + 60*1000
     });

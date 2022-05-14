@@ -1,22 +1,21 @@
-import { BigNumber } from "ethers";
-import { IssueContext } from "..";
 import HttpClient from "./HttpClient";
+import { IssueContext } from "..";
 import { SignedMessage } from "./MessageClient";
 
 export default class WebhookClient extends HttpClient {
   constructor(url: string){
     super(url);
   }
-  createIssue(repoAddress: string, issueId: BigNumber, context: IssueContext){
+  createIssue(repoAddress: string, issueId: string, context: IssueContext){
     return this._postReq(`repos/${repoAddress}/issues/${issueId.toString()}/create`, { context });
   }
-  resolveIssue(repoAddress: string, issueId: BigNumber){
+  resolveIssue(repoAddress: string, issueId: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/resolve`);
   }
-  rejectIssue(repoAddress: string, issueId: BigNumber){
+  rejectIssue(repoAddress: string, issueId: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/reject`);
   }
-  claimExpired(repoAddress: string, issueId: BigNumber){
+  claimExpired(repoAddress: string, issueId: string){
     return this._getReq(`repos/${repoAddress}/issues/${issueId.toString()}/expire`);
   }
   tip(repoAddress: string, transactionHash: string, issueNumber: number | string){
