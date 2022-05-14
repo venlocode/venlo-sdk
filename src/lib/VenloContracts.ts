@@ -6,6 +6,7 @@ import RepoFactory from "../contracts/RepoFactory.json";
 import Ven from "../contracts/Ven.json";
 import UserTable from "../contracts/UserTable.json";
 import RepoTable from "../contracts/RepoTable.json";
+import VenCrowdsale from "../contracts/Crowdsale.json";
 
 export enum ChainId {
   Polygon = 137,
@@ -38,6 +39,10 @@ const contracts = {
       abi: RepoTable.abi,
       address: RepoTable.networks[ChainId.Mumbai].address
     },
+    VenCrowdsale: VenCrowdsale.networks[ChainId.Mumbai] && {
+      abi: VenCrowdsale.abi,
+      address: VenCrowdsale.networks[ChainId.Mumbai].address
+    }
   }
 };
 
