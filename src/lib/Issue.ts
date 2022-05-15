@@ -9,7 +9,7 @@ export interface IssueData {
   id: BigNumber;
   creator: string;
   context: number[];
-  tokens: BigNumber;
+  value: BigNumber;
   expiresOn: BigNumber;
 };
 
@@ -21,7 +21,7 @@ export interface IssueContext {
 export default class Issue {
   id: BigNumber;
   creator: string;
-  tokens: BigNumber;
+  value: BigNumber;
   expiresOn: BigNumber;
 
   context?: IssueContext;
@@ -32,7 +32,7 @@ export default class Issue {
   constructor(data: IssueData){
     this.id = data.id;
     this.creator = data.creator;
-    this.tokens = data.tokens;
+    this.value = data.value;
     this.expiresOn = data.expiresOn;
 
     this._contextRaw = data.context;
